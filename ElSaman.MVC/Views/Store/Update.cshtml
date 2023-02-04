@@ -1,0 +1,130 @@
+﻿@using ELSaman.ViewModels
+@model StoreEditViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    @*<link rel="stylesheet" href="~/Content/CSS/VendorTable.css"/>*@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+        input[type=text], [type=email], [type=password], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+
+
+        div {
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        #btnAdd {
+            width: 100%;
+            background-color: #2DAAB8;
+            color: #F6EE99;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            font-weight:bold;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            float: right;
+        }
+
+        #customFile {
+            width: 22%;
+            background-color:#2DAAB8;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            float: left;
+        }
+
+    </style>
+</head>
+  @section StyleSection{
+    <link rel="stylesheet" href="/assets/css/AddGeneralToDB.css" />
+    }
+<body>
+
+  <div>
+<form data-ajax="true"  asp-action="Update" asp-controller="Store" method="post" enctype="multipart/form-data">
+    <h1>Update Store</h1>
+
+   @*  <div style="display:none">
+      
+       <input name="@Model.RatingID" type="text" class="form-group" value="@Model.RatingID"/>
+   </div>
+
+    *@
+    
+     <div asp-validation-summary="ModelOnly" style="color:red" ></div>
+    <hr>
+    <br />
+
+    <label asp-for="FromDate"> FromDate </label>
+    <input  asp-for="FromDate">
+    <span asp-validation-for="FromDate" style="color:red"></span>
+
+    <br />
+    <label asp-for="ToDate"> ToDate </label>
+    <input  asp-for="ToDate">
+    <span asp-validation-for="ToDate" style="color:red"></span>
+
+    <br />
+
+@*     <label asp-for="Vendor_ID"> Vendor_ID  </label>*@
+    <input type="hidden" asp-for="Vendor_ID">
+    @*<span asp-validation-for="Vendor_ID" style="color:red"></span>*@
+
+    <br />
+
+     <label asp-for="NameEN"> English Name </label>
+    <input  asp-for="NameEN">
+    <span asp-validation-for="NameEN" style="color:red" ></span>
+
+    <br />
+
+
+     <label asp-for="NameAR">Arabic Name </label>
+    <input  asp-for="NameAR">
+    <span asp-validation-for="NameAR" style="color:red"></span>
+     <br />
+
+     <label asp-for="RegisterDate">Register Date </label>
+    <input  asp-for="RegisterDate">
+    <span asp-validation-for="RegisterDate" style="color:red"></span>
+
+ 
+    
+    <div>
+            <label asp-for="Image"></label>
+                <input asp-for="Image" class="custom-file-input" id="customFile" value="@ViewBag.Image">
+                
+      
+        </div>
+        <div>
+         <img src="@ViewBag.Image" alt="@ViewBag.NameEN"/>
+         </div>
+    <br />
+
+
+
+    <button id="btnAdd" type="submit" value="Store">Update</button>
+</form>
+  </div>
+
+</body>
+</html>

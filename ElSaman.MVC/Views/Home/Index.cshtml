@@ -1,0 +1,289 @@
+﻿@using Models
+@using ELSaman.ViewModels
+
+
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<User> _SignInManager
+
+    <head>
+    <title>Admin panel dashboard card design usign html and css - www.pakainfo.com</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Raleway:100,200,400,500,600" rel="stylesheet" type="text/css">
+</head>
+
+@{
+    var claimsIdentity = (System.Security.Claims.ClaimsIdentity)this.User.Identity;
+    var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+    var userId = claim.Value;
+}
+
+
+
+@section StyleSection{
+<link rel="stylesheet" href="~/assets/css/vendor.css" />
+<link rel="stylesheet" href="~/assets/css/Class.css" />
+
+}
+<style>
+    .bronze {
+    background-color:#143444 ;
+    color: #ed8b05;
+    width: 35%;
+    padding: 0.5rem;
+    margin-bottom: 5%;
+    text-align: center;
+    box-shadow:2px 2px 8px grey;
+}
+.gold{
+    background-color: #143444;
+    color: #FFD700;
+    width: 35%;
+    padding: 0.5rem;
+    margin-bottom: 5%;
+    text-align: center;
+    box-shadow:2px 2px 8px grey;
+
+
+}
+.silver{
+    background-color: #143444;
+    color: #C0C0C0;
+    width: 35%;
+    padding: 0.5rem;
+    margin-bottom: 5%;
+    text-align: center;
+    box-shadow:2px 2px 8px grey;
+
+
+}
+.Free{
+    background-color: #143444;
+    color:  rgb(114, 123, 243);
+    width: 35%;
+    padding: 0.5rem;
+    margin-bottom: 5%;
+    text-align: center;
+ 
+}
+
+.memcards{
+    margin-top:3rem;
+    display:flex;
+    gap:1rem;
+
+}
+
+.memcards h3 {
+        font-size: 6rem;
+    }
+    .memcards h5 {
+        font-size: 2.1rem;
+        font-weight:bold;
+    }
+    .memcards h6 {
+        font-size: 1.5rem;
+        font-weight:bold;
+    }
+    .memcards p{
+        color:#fff
+    }
+    .memcards a{
+        text-decoration:none;
+        color:#143444;
+        background-color:#fff;
+        padding:0.5rem;
+        margin-top: 0.5rem;
+        display:inline-block;
+        width:100%;
+        font-weight:bold
+    }
+    .msg{
+        background-color:#bcefbc;
+        border: 1px green solid;
+        box-shadow:2px 2px 8px grey;
+        padding:1rem;
+        width:100%;
+        display:inline-block;
+
+
+    }
+</style>
+
+
+
+
+<!---------------STATISTICS-------------------->
+@*//For Not Accepted Vendors
+*@@if(this.User.HasClaim(c => c.Value=="Vendor") && ViewBag.Flag )
+{
+            <div class="memcards">
+             <div class="bronze">
+                    <h3><i class="fa-solid fa-medal"></i></h3>
+                    <h5>@ViewBag.Bronze.TypeEn</h5>
+                    <h6>For @ViewBag.Bronze.OrderNum Orders</h6>
+                    <p><i class="fa-solid fa-dollar-sign"></i> @ViewBag.Bronze.Price </p>
+                    <a asp-action="AddMemberShip" asp-controller="Vendor" 
+                    asp-route-membershipid="@ViewBag.Bronze.ID"
+                    asp-route-id="@userId">Subscribe</a>
+                </div>
+                <div class="silver">
+                    <h3><i class="fa-solid fa-medal"></i></h3>
+                    <h5>@ViewBag.Silver.TypeEn</h5>
+                    <h6>For @ViewBag.Silver.OrderNum Orders </h6>
+                    <p><i class="fa-solid fa-dollar-sign"></i> @ViewBag.Silver.Price </p>
+                    <a asp-action="AddMemberShip" asp-controller="Vendor" 
+                    asp-route-membershipid="@ViewBag.Silver.ID"
+                    asp-route-id="@userId">Subscribe</a>
+                </div>
+                <div class="gold">
+                    <h3><i class="fa-solid fa-medal"></i></h3>
+                    <h5>@ViewBag.Golden.TypeEn</h5>
+                    <h6>For @ViewBag.Golden.OrderNum Orders</h6>
+                    <p><i class="fa-solid fa-dollar-sign"></i> @ViewBag.Golden.Price </p>
+                    <a asp-action="AddMemberShip" asp-controller="Vendor"
+                    asp-route-membershipid="@ViewBag.Golden.ID"
+                    asp-route-id="@userId">Subscribe</a>
+                </div>
+                 <div class="Free">
+                    <h3><i class="fa-solid fa-medal"></i></h3>
+                    <h5>@ViewBag.Free.TypeEn</h5>
+                    <h6>For @ViewBag.Free.OrderNum Orders</h6>
+                    <p><i class="fa-solid fa-dollar-sign"></i> @ViewBag.Free.Price</p>
+                    <a asp-action="AddMemberShip" asp-controller="Vendor"
+                    asp-route-membershipid="@ViewBag.Free.ID"
+                    asp-route-id="@userId">Subscribe</a>
+                </div>
+                </div>
+  }
+            @if(ViewBag.Waiting)
+            {
+            <span class="msg" >Please wait for Acceptance</span>
+            }
+
+
+
+
+
+
+@if (this.User.HasClaim(c => c.Value == "Admin"))
+{
+   
+        <div class="stat" style="margin-top:110px;">
+            </div>
+           <div class="main-part">
+<div class="cpanel">
+<div class="icon-part">
+<i class="fa fa-users" aria-hidden="true"></i><br>
+<small>Users</small>
+<p>@ViewBag.UserCount</p>
+</div>
+<div class="card-content-part">
+<a asp-action="search" asp-controller="User">View Users</a>
+</div>
+</div>
+
+<div class="cpanel cpanel-green">
+<div class="icon-part">
+<i class="fa-solid fa-store"></i><br>
+<small>Store</small>
+<p>@ViewBag.StoreCount</p>
+</div>
+<div class="card-content-part">
+ <a asp-action="Get" asp-controller="Store" >View Stores</a>
+</div>
+</div>
+<div class="cpanel cpanel-orange">
+<div class="icon-part">
+<i class="fa-solid fa-user"></i><br>
+<small>Vendor</small>
+<p>@ViewBag.VendorCount</p>
+</div>
+<div class="card-content-part">
+ <a asp-action="search" asp-controller="Vendor">Vendors</a>
+</div>
+</div>
+
+
+<div class="cpanel cpanel-blue">
+<div class="icon-part">
+<i class="fa fa-shopping-cart" aria-hidden="true"></i><br>
+<small>Order</small>
+<p>@ViewBag.OrderCount</p>
+</div>
+<div class="card-content-part">
+  @if(this.User.HasClaim(c => c.Value=="Vendor"))
+                {
+                    <a asp-action="GetOrders" asp-controller="Vendor" asp-route-vendorID="@userId">Orders</a>
+                }
+                else
+                {
+                    <a asp-action="Get" asp-controller="Order" asp-route-vendorID="@userId">Orders</a>
+                }
+</div>
+</div>
+
+ </div>        
+       
+        
+}
+
+
+    <!-- For Admin and Accepted Vendors Only -->
+   @* @if(ViewBag.Flag != null || this.User.HasClaim(c => c.Value == "Admin"))
+    @if (this.User.HasClaim(c => c.Value == "Admin"))
+                    ViewBag.Flag = false;*@
+@*@if (!ViewBag.Flag)
+    @if (this.User.HasClaim(c => c.Value == "Vendor") && !ViewBag.Flag) ;*@
+@*
+  <div class="stat">
+            <h2 class="head">Welcome </h2>
+        <hr />
+
+    </div>*@
+
+@if (this.User.HasClaim(c => c.Value == "Vendor") && !ViewBag.Flag)
+{
+    <div class="stat" style="margin-top:20%;">
+    </div>
+    <div class="main-part">
+
+        <div class="cpanel cpanel-blue">
+            <div class="icon-part">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i><br>
+                <small>Order</small>
+                <p>@ViewBag.OrderCount</p>
+            </div>
+            <div class="card-content-part">
+                @if (this.User.HasClaim(c => c.Value == "Vendor"))
+                {
+                    <a asp-action="GetOrders" asp-controller="Vendor" asp-route-vendorID="@userId">Orders</a>
+                }
+                else
+                {
+                    <a asp-action="Get" asp-controller="Order" asp-route-vendorID="@userId">Orders</a>
+                }
+            </div>
+        </div>
+        <div class="cpanel cpanel-green">
+<div class="icon-part">
+<i class="fa-solid fa-store"></i><br>
+<small>Store</small>
+<p>@ViewBag.StoreCount</p>
+</div>
+<div class="card-content-part">
+ <a asp-action="Get" asp-controller="Store" >View Stores</a>
+</div>
+</div>
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+

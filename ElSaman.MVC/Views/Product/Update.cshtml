@@ -1,0 +1,67 @@
+﻿@using ELSaman.ViewModels
+@{
+    Layout = "_Layout";
+}
+@section StyleSection {
+    <link rel = "stylesheet" href="~/assets/css/AddGeneralToDB.css"/>
+}
+@model ProductEditViewModel
+<h1>Edit Product</h1>
+<form method="post"  enctype="multipart/form-data" asp-action="Update" asp-controller="Product" >
+    
+
+   <div >
+       <label asp-for="NameEN"></label>
+       <input asp-for="NameEN" type="text" class="form-control" value="@ViewBag.CurrentProduct.NameEN"/>
+   </div>
+    <div >
+       <label asp-for="NameAR"></label>
+       <input asp-for="NameAR" type="text"  value="@ViewBag.CurrentProduct.NameAR" />
+   </div>
+
+   <div >
+       <label asp-for="Price"></label>
+       <input asp-for="Price" type="number"  value="@ViewBag.CurrentProduct.Price" />
+   </div>
+   <br />
+   <div >
+       <label asp-for="Qty"></label>
+       <input asp-for="Qty" type="number"  value="@ViewBag.CurrentProduct.Qty" />
+   </div>
+   <br />
+    <div >
+    <label asp-for="CategoryID"> Category </label>
+    <select asp-for="CategoryID" asp-items="@ViewBag.Categories">
+        <option selected>Choose an option</option>                 
+    </select>
+    </div>
+    <span data-ajax="true" asp-validation-for="NameEN" style="color:red"></span>
+    <br />
+    <div >
+    <label asp-for="StoreID"> Store </label>
+    <select asp-for="StoreID" asp-items="@ViewBag.Restaurants">
+        <option selected>Choose an option</option>                 
+    </select>
+    </div>
+    <div>
+    <label asp-for="Details"> Details</label>
+    <input  asp-for="Details">
+    <span asp-validation-for="Details" style="color:red"></span>
+    </div>
+    <br />
+    <div >
+    <label asp-for="Image">Product Image</label>
+    <input type="file" asp-for="Image" value="@ViewBag.CurrentProduct.ImageUrl">
+    </div>
+  @*  <div> 
+        <img src="@ViewBag.CurrentRecipe.ImageUrl" alt="@ViewBag.CurrentRecipe.NameEN"/>
+    </div>*@
+
+  
+    <div >
+       <input type="submit"  value="Update" asp-action="Update" asp-controller="Product"/>
+   </div>
+
+
+
+</form>

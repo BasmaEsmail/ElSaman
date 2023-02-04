@@ -1,0 +1,39 @@
+﻿@using ELSaman.ViewModels
+@model UserEditViewModel
+
+
+@section StyleSection{
+    <link rel="stylesheet" href="~/assets/css/AddGeneralToDB.css"/>
+}
+
+<h3>Add to Users </h3>
+<div>
+  <form method="post" asp-action="Add" asp-controller="User">
+    <label asp-for="NameEN"> NameEN</label>
+    <input  asp-for="NameEN">
+    <span asp-validation-for="NameEN" style="color:red"></span>
+    <br />
+     <span asp-validation-for="phone" style="color:red"></span>
+    <br />
+     <label asp-for="NameAR"> NameAR</label>
+    <input  asp-for="NameAR">
+    <span asp-validation-for="NameAR" style="color:red"></span>
+    <br />
+    <label asp-for="phone"> phone</label>
+    <input  asp-for="phone">
+    <br />
+     <label asp-for="Email"> Email</label>
+    <input  asp-for="Email">
+    <span asp-validation-for="Email" style="color:red"></span>
+<br />
+     <label asp-for="Password"> Password</label>
+    <input  asp-for="Password">
+    <br />
+     <label asp-for="ConfirnmPassword"> ConfirnmPassword</label>
+    <input  asp-for="ConfirnmPassword">
+    <br />
+    <input type="hidden" asp-for="Role" value="User">
+    <input type="submit" value="Submit">
+  </form>
+</div>
+

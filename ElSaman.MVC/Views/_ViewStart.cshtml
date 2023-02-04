@@ -1,0 +1,12 @@
+﻿@using Models
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<User> _SignInManager
+
+ 
+
+@if(_SignInManager.IsSignedIn(User))
+
+        {
+
+		Layout = "_Layout";
+	}

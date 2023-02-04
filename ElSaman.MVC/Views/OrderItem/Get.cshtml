@@ -1,0 +1,57 @@
+﻿
+@using ELSaman.ViewModels
+
+
+@model IPagedList<OrderItemViewModel>
+ <!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<section class="bg-light p-5">
+    <h2 style="margin:10px;" class="pb-2">Order Details </h2>
+    <div  id="no-more-tables">
+<table class="table bg-white">
+    <thead>
+  <tr>
+    <th>Order ID</th>
+        <th>Product Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+  </tr>
+  </thead>
+  <tbody>
+    @foreach(var V in Model)
+{  
+  <tr>
+    <td data-title="OrderListID">@V.OrderID</td>
+                            <td>@V.ProductName</td>
+
+    <td data-title="OrderListID">@V.Qty </td>
+    <td>@(@V.Price * @V.Qty)</td>
+  </tr>
+    }
+    </tbody>
+</table>
+</div>
+</section>
+</body>
+</html>

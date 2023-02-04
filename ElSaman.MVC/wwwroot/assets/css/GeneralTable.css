@@ -1,0 +1,75 @@
+﻿
+
+table {
+    font-family: Rajdhani, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    
+    
+}
+thead tr {
+    background-color: #2DAAB8;
+    color:#fff;
+}
+tbody tr {
+    background-color: #fff;
+    color: #2DAAB8
+}
+#btnAdd {
+    width: 7%;
+    background-color: #2DAAB8;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    float: right;
+}
+
+
+
+@media(max-width:991px) {
+    #no-more-tables tbody,
+    #no-more-tables tr,
+    #no-more-tables td {
+        display: block;
+    }
+
+    #no-more-tables thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      
+    }
+
+    #no-more-tables td {
+        position: relative;
+        padding-left: 50%;
+    }
+    tbody tr :nth-child(1) {
+        background-color: #2DAAB8;
+        color: #fff;
+    }
+    #no-more-tables td:before {
+        content: attr(data-title);
+        position: absolute;
+        left: 10px;
+        color: #214448;
+        font-weight: bold;
+        /*  color: #F6EE99;
+            background-color: #2DAAB8;*/
+    }
+  
+
+   
+}
+
+

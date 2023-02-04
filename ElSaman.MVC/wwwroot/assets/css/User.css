@@ -1,0 +1,16 @@
+﻿table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+

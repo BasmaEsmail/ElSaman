@@ -1,0 +1,72 @@
+﻿
+@using ELSaman.ViewModels
+
+
+
+@model IPagedList<MemberShipViewModel>
+
+	
+@section StyleSection
+{
+<link rel="stylesheet" href="~/Content/CSS/MemberShip.css"/> 
+<link rel="stylesheet" href="~/Content/CSS/GeneralTable.css"/>
+
+
+}
+
+
+
+
+<section class="bg-light p-5">
+    <h2 style="margin:10px;" class="pb-2">MemberShip</h2>
+    <a asp-action="Add" asp-controller="MemberShip" id="btnAdd">Add</a>
+    <div  id="no-more-tables">
+<table class="table bg-white">
+    <thead>
+  <tr>
+    <th>ID</th>
+    <th>Price</th>
+    <th>TypeEn</th>
+    <th>TypeAr</th>
+    <th>Update</th>
+
+  </tr>
+   </thead>
+   <tbody>
+   @foreach (var M in Model)
+  
+{
+	<tr>
+	<td data-title="ID">@M.ID</td>
+	<td data-title="Price">@M.Price</td>
+	<td data-title="TypeEn<">@M.TypeEn</td>
+	<td data-title="ID">@M.TypeAr</td>
+    <td data-title="Update"><a asp-action="Update" asp-controller="MemberShip" asp-route-ID="@M.ID">Update</a></td>
+   </tr>
+}
+  
+  </tbody>
+</table>
+</div>
+</section>
+<div>
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Search", new { pageIndex = page }),
+        new X.PagedList.Web.Common.PagedListRenderOptions
+        {
+        DisplayItemSliceAndTotal = true,
+        ContainerDivClasses = new[] { "navigation" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" },
+        })
+    </div>
+    <div>
+    <script>
+        $(document).ready(function() {
+            $('ul.pagination > li.disabled > a').addClass('page-link');
+        });
+    </script>
+</div>
+
+
+
+

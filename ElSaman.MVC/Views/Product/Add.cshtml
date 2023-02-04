@@ -1,0 +1,77 @@
+﻿@using ELSaman.ViewModels
+@model ProductEditViewModel
+
+
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="~/assets/css/AddGeneralToDB.css"/>
+<body>
+
+<h3>Add Products </h3>
+
+<div>
+  <form method="post" enctype="multipart/form-data" asp-action="Add" asp-controller="Product"  >
+    <label asp-for="NameEN"> Name in English</label>
+    <input  asp-for="NameEN">
+    <span asp-validation-for="NameEN" style="color:red"></span>
+    <br />
+    <label asp-for="NameAR"> Name in Arabic</label>
+    <input  asp-for="NameAR">
+    <span asp-validation-for="NameAR" style="color:red"></span>
+    <br />
+    
+    <label asp-for="CategoryID"> Category </label>
+    <select asp-for="CategoryID" asp-items="@ViewBag.Categories">
+        <option selected>Choose an option</option>                 
+    </select>
+    <span data-ajax="true" asp-validation-for="CategoryID" style="color:red"></span>
+    <br />
+    <span data-ajax="true" asp-validation-for="CategoryID" style="color:red"></span>
+    <input asp-for="StoreID" type="hidden">
+    @*<label asp-for="RestaurantID"> Restaurant </label>
+    <select asp-for="RestaurantID" asp-items="@ViewBag.Restaurants">
+        <option selected>Choose an option</option>                 
+    </select>*@
+
+    <span data-ajax="true" asp-validation-for="NameEN" style="color:red"></span>
+    <br />
+     
+
+   @* <label asp-for="ImageUrl"> ImageUrl</label>
+    <input  asp-for="ImageUrl">
+    <span asp-validation-for="ImageUrl" style="color:red"></span>
+    <br />*@
+    <br />
+    <label asp-for="Details"> Details</label>
+    <input  asp-for="Details">
+    <span asp-validation-for="Details" style="color:red"></span>
+    <br />
+    <br />
+     <label asp-for="Price"> Price</label>
+    <input  asp-for="Price">
+    <span asp-validation-for="Price" style="color:red"></span>
+    <br />
+     <label asp-for="Qty"> Quantity</label>
+    <input  asp-for="Qty">
+    <span asp-validation-for="Qty" style="color:red"></span>
+    <br />
+    @*<label asp-for="RegisterDate"> Register Date</label>
+    <input  asp-for="RegisterDate">
+    <span asp-validation-for="RegisterDate" style="color:red"></span>*@
+
+    <div>
+            <label asp-for="Image"></label>
+                <input asp-for="Image" class="custom-file-input" id="customFile">
+                 <span asp-validation-for="Image" style="color:red"></span>
+      
+        </div>
+
+
+    <input type="submit" value="Add">
+  </form>
+</div>
+
+</body>
+</html>
+
+
